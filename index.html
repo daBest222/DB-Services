@@ -1,102 +1,178 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DB Services</title>
 
-const services = [
-  {
-    name: "Lawn Mowing",
-    price: "$20 - $50",
-    desc: "Professional lawn mowing to keep your yard clean and fresh.",
-    img: "https://via.placeholder.com/300"
-  },
-  {
-    name: "Car Washing",
-    price: "$15 - $40",
-    desc: "Full exterior wash and shine for your vehicle.",
-    img: "https://via.placeholder.com/300"
-  },
-  {
-    name: "Basic Coding Help",
-    price: "$10 - $30",
-    desc: "Help with small coding projects, websites, and scripts.",
-    img: "https://via.placeholder.com/300"
-  }
-];
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-export default function App() {
-  const [form, setForm] = useState({ name: "", message: "" });
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  return (
-    <div className="bg-gray-950 text-white min-h-screen">
-      {/* Header */}
-      <header className="p-6 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl font-bold"
-        >
-          DB Services
-        </motion.h1>
-        <p className="text-gray-400 mt-2">Fast, reliable, affordable services</p>
-      </header>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0a0a0a;
+      color: white;
+    }
 
-      {/* Services */}
-      <section className="grid md:grid-cols-3 gap-6 p-6">
-        {services.map((service, i) => (
-          <motion.div
-            key={i}
-            whileHover={{ scale: 1.05 }}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.2 }}
-            className="bg-gray-900 rounded-2xl overflow-hidden shadow-lg"
-          >
-            <img src={service.img} className="w-full h-40 object-cover" />
-            <div className="p-4">
-              <h2 className="text-xl font-semibold">{service.name}</h2>
-              <p className="text-gray-400 text-sm">{service.desc}</p>
-              <p className="mt-2 text-green-400 font-bold">{service.price}</p>
-            </div>
-          </motion.div>
-        ))}
-      </section>
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      animation: fadeDown 1s ease;
+    }
 
-      {/* Contact Form */}
-      <section className="p-6 max-w-xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="bg-gray-900 p-6 rounded-2xl shadow-lg"
-        >
-          <h2 className="text-2xl font-bold mb-4">Contact Me</h2>
+    header h1 {
+      font-size: 3rem;
+    }
 
-          <input
-            type="text"
-            placeholder="Your Name"
-            className="w-full p-2 mb-3 bg-gray-800 rounded"
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
-          />
+    header p {
+      color: #aaa;
+      margin-top: 10px;
+    }
 
-          <textarea
-            placeholder="Your Message"
-            className="w-full p-2 mb-3 bg-gray-800 rounded"
-            rows={4}
-            onChange={(e) => setForm({ ...form, message: e.target.value })}
-          />
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
 
-          <button
-            onClick={() => alert("Message sent! (you can connect this later)")}
-            className="bg-green-500 px-4 py-2 rounded hover:bg-green-600"
-          >
-            Send
-          </button>
-        </motion.div>
-      </section>
+    .card {
+      background: #111;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeUp 1s ease;
+    }
 
-      {/* Footer */}
-      <footer className="text-center text-gray-500 p-4">
-        © {new Date().getFullYear()} DB Services
-      </footer>
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card h2 { font-size: 1.3rem; }
+    .card p { color: #bbb; font-size: 0.9rem; margin-top: 5px; }
+
+    .price {
+      color: #00ff99;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .contact {
+      max-width: 500px;
+      margin: 40px auto;
+      background: #111;
+      padding: 20px;
+      border-radius: 16px;
+      animation: fadeUp 1.2s ease;
+    }
+
+    .contact h2 {
+      margin-bottom: 15px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #222;
+      color: white;
+    }
+
+    button {
+      background: #00ff99;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #00cc77;
+    }
+
+    footer {
+      text-align: center;
+      color: #777;
+      padding: 20px;
+    }
+
+    /* Animations */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>DB Services</h1>
+    <p>Fast, reliable, affordable services</p>
+  </header>
+
+  <section class="services">
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300">
+      <div class="card-content">
+        <h2>Lawn Mowing</h2>
+        <p>Keep your yard clean and fresh.</p>
+        <div class="price">$20 - $50</div>
+      </div>
     </div>
-  );
-}
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300">
+      <div class="card-content">
+        <h2>Car Washing</h2>
+        <p>Make your car shine like new.</p>
+        <div class="price">$15 - $40</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300">
+      <div class="card-content">
+        <h2>Basic Coding Help</h2>
+        <p>Websites, scripts, and small tools.</p>
+        <div class="price">$10 - $30</div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="contact">
+    <h2>Contact Me</h2>
+    <input type="text" placeholder="Your Name">
+    <textarea rows="4" placeholder="Your Message"></textarea>
+    <button onclick="alert('Message sent! (connect this later)')">Send</button>
+  </section>
+
+  <footer>
+    © 2026 DB Services
+  </footer>
+
+</body>
+</html>
