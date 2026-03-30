@@ -9,7 +9,11 @@
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: #0a0a0a; color: white; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298); /* Gradient blue background */
+      color: white; 
+    }
 
     header { text-align: center; padding: 40px 20px; animation: fadeDown 1s ease; }
     header h1 { font-size: 3rem; }
@@ -37,6 +41,8 @@
     .card p { color: #bbb; font-size: 0.9rem; margin-top: 5px; }
 
     .price { color: #00ff99; font-weight: bold; margin-top: 10px; }
+
+    .notice { color: #ffcc00; font-size: 0.85rem; margin-top: 5px; }
 
     .contact {
       max-width: 700px;
@@ -68,14 +74,19 @@
 
     button:hover { background: #00cc77; }
 
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-      border-radius: 10px;
-    }
+    iframe { width: 100%; border: none; border-radius: 10px; }
 
     footer { text-align: center; color: #777; padding: 20px; }
+
+    .service-area {
+      max-width: 700px;
+      margin: 40px auto;
+      background: #111;
+      padding: 20px;
+      border-radius: 16px;
+      animation: fadeUp 1s ease;
+      text-align: center;
+    }
 
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-30px); }
@@ -101,8 +112,8 @@
       <img src="https://via.placeholder.com/300">
       <div class="card-content">
         <h2>Lawn Mowing</h2>
-        <p>Keep your yard clean and fresh.</p>
-        <div class="price">$20 - $50</div>
+        <p class="notice">⚠️ Customer must provide lawn mower and equipment</p>
+        <div class="price">$20 - $40</div>
       </div>
     </div>
 
@@ -126,6 +137,15 @@
 
   </section>
 
+  <section class="service-area">
+    <h2>Service Area</h2>
+    <p>I offer services primarily within this local area. Please check the map below to see if I can reach your location.</p>
+    <!-- Embedded Google Map -->
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.0000000000005!2d174.765!3d-36.849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d000000000001%3A0x0000000000000000!2sChelsea%2C%20Auckland!5e0!3m2!1sen!2snz!4v0000000000000"
+      width="100%" height="450" allowfullscreen="" loading="lazy"></iframe>
+  </section>
+
   <section class="contact">
     <h2>Book a Job</h2>
 
@@ -144,7 +164,7 @@
     </div>
 
     <!-- Embedded Google Form -->
-    <iframe src="https://forms.gle/YOUR_FORM_LINK"></iframe>
+    <iframe src="https://forms.gle/YOUR_FORM_LINK" height="600"></iframe>
 
   </section>
 
