@@ -5,32 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DB Services</title>
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #0a0a0a; color: white; }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0a0a0a;
-      color: white;
-    }
-
-    header {
-      text-align: center;
-      padding: 40px 20px;
-      animation: fadeDown 1s ease;
-    }
-
-    header h1 {
-      font-size: 3rem;
-    }
-
-    header p {
-      color: #aaa;
-      margin-top: 10px;
-    }
+    header { text-align: center; padding: 40px 20px; animation: fadeDown 1s ease; }
+    header h1 { font-size: 3rem; }
+    header p { color: #aaa; margin-top: 10px; }
 
     .services {
       display: grid;
@@ -47,73 +30,53 @@
       animation: fadeUp 1s ease;
     }
 
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    .card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-    }
-
-    .card-content {
-      padding: 15px;
-    }
-
+    .card:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .card img { width: 100%; height: 160px; object-fit: cover; }
+    .card-content { padding: 15px; }
     .card h2 { font-size: 1.3rem; }
     .card p { color: #bbb; font-size: 0.9rem; margin-top: 5px; }
 
-    .price {
-      color: #00ff99;
-      font-weight: bold;
-      margin-top: 10px;
-    }
+    .price { color: #00ff99; font-weight: bold; margin-top: 10px; }
 
     .contact {
-      max-width: 500px;
+      max-width: 700px;
       margin: 40px auto;
       background: #111;
       padding: 20px;
       border-radius: 16px;
       animation: fadeUp 1.2s ease;
+      text-align: center;
     }
 
-    .contact h2 {
-      margin-bottom: 15px;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: none;
-      border-radius: 8px;
-      background: #222;
-      color: white;
+    .buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
     }
 
     button {
       background: #00ff99;
       border: none;
-      padding: 10px 20px;
+      padding: 10px 16px;
       border-radius: 8px;
       cursor: pointer;
       transition: 0.3s;
+      font-weight: bold;
     }
 
-    button:hover {
-      background: #00cc77;
+    button:hover { background: #00cc77; }
+
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 10px;
     }
 
-    footer {
-      text-align: center;
-      color: #777;
-      padding: 20px;
-    }
+    footer { text-align: center; color: #777; padding: 20px; }
 
-    /* Animations */
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -164,10 +127,25 @@
   </section>
 
   <section class="contact">
-    <h2>Contact Me</h2>
-    <input type="text" placeholder="Your Name">
-    <textarea rows="4" placeholder="Your Message"></textarea>
-    <button onclick="alert('Message sent! (connect this later)')">Send</button>
+    <h2>Book a Job</h2>
+
+    <div class="buttons">
+      <button onclick="window.location.href='https://forms.gle/YOUR_FORM_LINK'">
+        Book via Form
+      </button>
+
+      <button onclick="window.location.href='tel:0212345678'">
+        Call Me
+      </button>
+
+      <button onclick="window.location.href='mailto:your@email.com'">
+        Email Me
+      </button>
+    </div>
+
+    <!-- Embedded Google Form -->
+    <iframe src="https://forms.gle/YOUR_FORM_LINK"></iframe>
+
   </section>
 
   <footer>
