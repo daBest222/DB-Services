@@ -26,7 +26,7 @@
       padding: 20px;
     }
 
-    .card {
+    .card, .bundle-card {
       background: #111;
       border-radius: 16px;
       overflow: hidden;
@@ -34,11 +34,13 @@
       animation: fadeUp 1s ease;
     }
 
-    .card:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    .card img { width: 100%; height: 160px; object-fit: cover; }
-    .card-content { padding: 15px; }
-    .card h2 { font-size: 1.3rem; }
-    .card p { color: #bbb; font-size: 0.9rem; margin-top: 5px; }
+    .bundle-card {grid-column: span 2;}
+
+    .card:hover, .bundle-card:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .card img, .bundle-card img { width: 100%; height: 160px; object-fit: cover; }
+    .card-content, .bundle-card .card-content { padding: 15px; }
+    .card h2, .bundle-card h2 { font-size: 1.3rem; }
+    .card p, .bundle-card p { color: #bbb; font-size: 0.9rem; margin-top: 5px; }
 
     .price { color: #00ff99; font-weight: bold; margin-top: 10px; }
 
@@ -108,6 +110,16 @@
 
   <section class="services">
 
+    <div class="bundle-card">
+      <img src="https://via.placeholder.com/300">
+      <div class="card-content">
+        <h2>Lawn Mowing + Window Washing Bundle</h2>
+        <p class="notice">⚠️ Customer must provide lawn mower</p>
+        <p>Get both services together and save time and money!</p>
+        <div class="price">$30 - $60</div>
+      </div>
+    </div>
+
     <div class="card">
       <img src="https://via.placeholder.com/300">
       <div class="card-content">
@@ -122,6 +134,15 @@
       <div class="card-content">
         <h2>Car Washing</h2>
         <p>Make your car shine like new.</p>
+        <div class="price">$15 - $40</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300">
+      <div class="card-content">
+        <h2>Window Washing</h2>
+        <p>Make your windows sparkle clean.</p>
         <div class="price">$15 - $40</div>
       </div>
     </div>
