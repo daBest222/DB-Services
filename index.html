@@ -6,19 +6,24 @@
   <title>DB Services</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="icon" href="logo.png" type="image/x-icon">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0a1a37, #3669c0); /* Gradient blue background */
-      color: white; 
+      background: linear-gradient(135deg, #0a1a37, #3669c0);
+      color: white;
     }
 
-    header { text-align: center; padding: 40px 20px; animation: fadeDown 1s ease; }
-    header h1 { font-size: 3rem; }
-    header p { color: #aaa; margin-top: 10px; }
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      animation: fadeDown 1s ease;
+    }
+
+    header p { color: #aaa; }
 
     .services {
       display: grid;
@@ -35,17 +40,94 @@
       animation: fadeUp 1s ease;
     }
 
-    .bundle-card {grid-column: span 2;}
+    .bundle-card { grid-column: span 2; }
 
-    .card:hover, .bundle-card:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    .card img, .bundle-card img { width: 100%; height: 160px; object-fit: cover; }
-    .card-content, .bundle-card .card-content { padding: 15px; }
-    .card h2, .bundle-card h2 { font-size: 1.3rem; }
-    .card p, .bundle-card p { color: #bbb; font-size: 0.9rem; margin-top: 5px; }
+    /* Hidden details (initial state) */
+    .details {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      color: #ddd;
+      font-size: 0.85rem;
+    }
 
-    .price { color: #00ff99; font-weight: bold; margin-top: 10px; }
+    /* Show on hover */
+    .card:hover .details,
+    .bundle-card:hover .details {
+      opacity: 1;
+      max-height: 200px;
+      margin-top: 8px;
+    }
 
-    .notice { color: #ffcc00; font-size: 0.85rem; margin-top: 5px; }
+    .details ul {
+      list-style: none;
+      padding-left: 0px;
+    }
+
+    .details li::before {
+      content: "✔ ";
+      color: #00ff99;
+    }
+
+    .card:hover, .bundle-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .card img, .bundle-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card h2, .bundle-card h2 {
+      font-size: 1.3rem;
+    }
+
+    .card p, .bundle-card p {
+      color: #bbb;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+    .price {
+      color: #00ff99;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .notice {
+      color: #ffcc00;
+      font-size: 0.85rem;
+      margin-top: 5px;
+    }
+
+    .card p.notice, .bundle-card p.notice {
+      color: #ffcc00;
+    }
+
+    .upsell {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: #00ccff;
+    }
+
+    .price-note {
+      max-width: 700px;
+      margin: 20px auto;
+      background: #111;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      color: #ffcc00;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 204, 0, 0.3);
+    }
 
     .contact {
       max-width: 700px;
@@ -53,8 +135,39 @@
       background: #111;
       padding: 20px;
       border-radius: 16px;
-      animation: fadeUp 1.2s ease;
       text-align: center;
+    }
+
+    .service-area { 
+      max-width: 700px; 
+      margin: 40px auto; 
+      background: #111; 
+      padding: 20px; 
+      border-radius: 16px; 
+      animation: fadeUp 1s ease; 
+      text-align: center; 
+    }
+
+    @keyframes fadeDown { 
+      from { 
+        opacity: 0; 
+        transform: translateY(-30px); 
+      } 
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      } 
+    } 
+    
+    @keyframes fadeUp { 
+      from { 
+        opacity: 0; transform: 
+        translateY(30px); 
+      } 
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      } 
     }
 
     .buttons {
@@ -71,131 +184,339 @@
       padding: 10px 16px;
       border-radius: 8px;
       cursor: pointer;
-      transition: 0.3s;
       font-weight: bold;
+      transition: 0.3s;
     }
 
-    button:hover { background: #00cc77; }
+    button:hover {
+      background: #00cc77;
+    }
 
-    iframe { width: 100%; border: none; border-radius: 10px; }
+    iframe {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+    }
 
-    footer { text-align: center; color: #777; padding: 20px; }
-
-    .service-area {
-      max-width: 700px;
-      margin: 40px auto;
-      background: #111;
-      padding: 20px;
-      border-radius: 16px;
-      animation: fadeUp 1s ease;
+    footer {
       text-align: center;
+      color: #777;
+      padding: 20px;
     }
 
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="logo.png" alt="DB Services Logo" width="300">
-    <p>Fast, reliable, affordable services</p>
-  </header>
+<header>
+  <img src="logo.png" alt="DB Services Logo" width="300">
+  <p>Fast, reliable, affordable services</p>
+</header>
 
-  <section class="services">
+<section class="services">
 
-    <div class="bundle-card">
-      <img src="https://via.placeholder.com/300">
-      <div class="card-content">
-        <h2>Lawn Mowing + Window Washing Bundle</h2>
-        <p>Get both services together and save time and money!</p>
-        <p class="notice">⚠️ Customer must provide lawn mower and ladder if needed</p>
-        <div class="price">$30 - $60</div>
+  <!-- Car Washing -->
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Car Washing</h2>
+      <p>Make your car shine like new.</p>
+      <div class="price">Starting from $25</div>
+      <div class="upsell">+ $10 interior clean * <p class="notice">* Customer provides vacuum</p></div>
+      <div class="details">
+        <ul>
+          <li>Exterior wash and dry</li>
+          <li>Wheel cleaning</li>
+          <li>Optional interior vacuum + dusting</li>
+        </ul>
       </div>
     </div>
+  </div>
 
-    <div class="card">
-      <img src="https://via.placeholder.com/300">
-      <div class="card-content">
-        <h2>Lawn Mowing</h2>
-        <p>Keep your lawn neat and tidy.</p>
-        <p class="notice">⚠️ Customer must provide lawn mower</p>
-        <div class="price">$20 - $40</div>
+  <!-- Lawn Bundle -->
+  <div class="bundle-card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Lawn Mowing + Weeding Bundle</h2>
+      <p>Full yard clean and tidy.</p>
+      <p class="notice">⚠️ Customer provides mower</p>
+      <div class="price">Starting from $50</div>
+      <div class="upsell">+ $10 weed spray</div>
+      <div class="details">
+        <ul>
+          <li>Full lawn mowing</li>
+          <li>Weeding</li>
+          <li>Optional weed spray</li>
+        </ul>
       </div>
     </div>
+  </div>
 
-    <div class="card">
-      <img src="https://via.placeholder.com/300">
-      <div class="card-content">
-        <h2>Car Washing</h2>
-        <p>Make your car shine like new.</p>
-        <div class="price">$15 - $40</div>
+  <!-- Lawn -->
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Lawn Mowing</h2>
+      <p>Keep your lawn neat and tidy.</p>
+      <p class="notice">⚠️ Customer provides mower and edge trimmer (optional)</p>
+      <div class="price">Starting from $30</div>
+      <div class="details">
+        <ul>
+          <li>Full lawn mowing</li>
+          <li>Optional edge trimming</li>
+        </ul>
       </div>
     </div>
+  </div>
 
-    <div class="card">
-      <img src="https://via.placeholder.com/300">
-      <div class="card-content">
-        <h2>Window Washing</h2>
-        <p>Make your windows sparkle clean.</p>
-        <p class="notice">⚠️ Customer must provide ladder if needed</p>
-        <div class="price">$15 - $40</div>
+  <!-- Weeding -->
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Weeding</h2>
+      <p>Remove unwanted plants.</p>
+      <div class="price">Starting from $30</div>
+      <div class="upsell">+ $10 weed spray</div>
+      <div class="details">
+        <ul>
+          <li>Weeding</li>
+          <li>Optional weed spray</li>
+        </ul>
       </div>
     </div>
+  </div>
 
-    <div class="card">
-      <img src="https://via.placeholder.com/300">
-      <div class="card-content">
-        <h2>Basic Coding Help</h2>
-        <p>Websites, scripts, and small tools.</p>
-        <div class="price">$10 - $30</div>
+  <!-- Leaf Clearing -->
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Leaf Clearing</h2>
+      <p>Remove fallen leaves.</p>
+      <p class="notice">⚠️ Tools required</p>
+      <div class="price">Starting from $25</div>
+      <div class="details">
+        <ul>
+          <li>Full leaf clearing</li>
+        </ul>
       </div>
     </div>
+  </div>
 
-  </section>
-
-  <section class="service-area">
-    <h2>Service Area</h2>
-    <p>I offer services primarily within this local area. Please check the map below to see if I can reach your location.</p>
-    <br/>
-    <!-- Embedded Google Map -->
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.0000000000005!2d174.765!3d-36.849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d000000000001%3A0x0000000000000000!2sChelsea%2C%20Auckland!5e0!3m2!1sen!2snz!4v0000000000000"
-      width="100%" height="450" allowfullscreen="" loading="lazy"></iframe>
-  </section>
-
-  <section class="contact">
-    <h2>Book a Job</h2>
-
-    <div class="buttons">
-      <button onclick="window.location.href='https://forms.gle/YOUR_FORM_LINK'">
-        Book via Form
-      </button>
-
-      <button onclick="window.location.href='tel:0212345678'">
-        Call Me
-      </button>
-
-      <button onclick="window.location.href='mailto:your@email.com'">
-        Email Me
-      </button>
+  <!-- Window Washing -->
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Window Washing</h2>
+      <p>Make your windows sparkle.</p>
+      <p class="notice">⚠️ Ladder may be required</p>
+      <div class="price">Starting from $25</div>
+      <div class="details">
+        <ul>
+          <li>Full window washing</li>
+        </ul>
+      </div>
     </div>
+  </div>
 
-    <!-- Embedded Google Form -->
-    <iframe src="https://forms.gle/YOUR_FORM_LINK" height="600"></iframe>
+  <!-- Pressure Washing -->
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Pressure Washing</h2>
+      <p>Remove dirt and grime.</p>
+      <div class="price">Starting from $40</div>
+      <div class="details">
+        <ul>
+          <li>Full pressure washing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-  </section>
+  <!-- Pet Bundle -->
+  <div class="bundle-card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Dog Walking + Pet Sitting</h2>
+      <p>Full pet care package.</p>
+      <p class="notice">⚠️ Supplies required</p>
+      <div class="price">Starting from $50</div>
+      <div class="details">
+        <ul>
+          <li>Dog walking</li>
+          <li>Pet sitting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-  <footer>
-    © 2026 DB Services
-  </footer>
+  <!-- Pet Sitting -->
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Pet Sitting</h2>
+      <p>Care while you're away.</p>
+      <div class="price">Starting from $25</div>
+      <div class="details">
+        <ul>
+          <li>Full pet care</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dog Walking -->
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Dog Walking</h2>
+      <p>Exercise for your dog.</p>
+      <div class="price">Starting from $20</div>
+      <div class="upsell">+ $10 longer walk</div>
+      <div class="details">
+        <ul>
+          <li>Full dog walking</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Bundle -->
+  <div class="bundle-card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Event Setup & Packing + Photography</h2>
+      <p>Setup and capture your event.</p>
+      <div class="price">Starting from $80</div>
+      <div class="details">
+        <ul>
+          <li>Help with setup and organization</li>
+          <li>Capture important moments with pictures</li>
+          <li>Help with packing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Setup -->
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Event Setup & Packing</h2>
+      <p>Help with setup and organization.</p>
+      <div class="price">Starting from $30</div>
+      <div class="details">
+        <ul>
+          <li>Help with setup and organization</li>
+          <li>Help with packing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Photography -->
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Photography</h2>
+      <p>Capture important moments.</p>
+      <div class="price">Starting from $50</div>
+      <div class="upsell">+ $20 editing package</div>
+      <div class="details">
+        <ul>
+          <li>Capture important moments with pictures</li>
+          <li>Optional editing package</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Editing -->
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Video Editing</h2>
+      <p>Enhance your videos.</p>
+      <div class="price">Starting from $40</div>
+      <div class="details">
+        <ul>
+          <li>Full video editing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3D Printing -->
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>3D Printing</h2>
+      <p>High precision prints.</p>
+      <div class="price">Starting from $10</div>
+      <div class="details">
+        <ul>
+          <li>3D print your 3D models with your chosen settings</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coding -->
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <div class="card-content">
+      <h2>Basic Coding Help</h2>
+      <p>Websites and tools.</p>
+      <div class="price">Starting from $20</div>
+      <div class="details">
+        <ul>
+          <li>Make basic tools and websites for you</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="price-note">
+  ⚠️ Prices vary depending on size, time required, and difficulty.
+</section>
+
+<section class="service-area">
+  <h2>Service Area</h2>
+  <p>I offer services primarily within this local area. Please check the map below to see if I can reach your location.</p>
+  <br/>
+
+  <!-- Embedded Google Map -->
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.0000000000005!2d174.765!3d-36.849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d000000000001%3A0x0000000000000000!2sChelsea%2C%20Auckland!5e0!3m2!1sen!2snz!4v0000000000000" width="100%" height="450" allowfullscreen="" loading="lazy"></iframe>
+
+</section>
+
+<!-- BOOKING SECTION -->
+<section class="contact">
+  <h2>Book a Job</h2>
+  <p style="color:#aaa; margin-bottom:15px;">Message me or use the form below to get started.</p>
+
+  <div class="buttons">
+    <button onclick="window.location.href='https://forms.gle/YOUR_FORM_LINK'">
+      Book via Form
+    </button>
+
+    <button onclick="window.location.href='tel:0212345678'">
+      Call Me
+    </button>
+
+    <button onclick="window.location.href='mailto:your@email.com'">
+      Email Me
+    </button>
+  </div>
+
+  <iframe src="https://forms.gle/YOUR_FORM_LINK" height="500"></iframe>
+</section>
+
+<footer>
+  © 2026 DB Services
+</footer>
 
 </body>
 </html>
