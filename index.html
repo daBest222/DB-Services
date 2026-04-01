@@ -129,6 +129,18 @@
       border: 1px solid rgba(255, 204, 0, 0.3);
     }
 
+    .service-section-note {
+      max-width: 700px;
+      margin: 20px auto;
+      background: #111;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      color: #ffffff;
+      font-size: 1.2rem;
+      border: 1px solid rgba(255, 204, 0, 0.3);
+    }
+
     .contact {
       max-width: 700px;
       margin: 40px auto;
@@ -213,7 +225,11 @@
   <p>Fast, reliable, affordable services</p>
 </header>
 
-<section class="services">
+<div class="service-section-note">
+Exterior Services
+</div>
+
+<section class="services" id="exterior">
 
   <!-- Car Washing -->
   <div class="card">
@@ -333,6 +349,14 @@
     </div>
   </div>
 
+</section>
+
+<div class="service-section-note">
+Care Services (Pets & People)
+</div>
+
+<section class="services" id="care">
+
   <!-- Pet Bundle -->
   <div class="bundle-card">
     <img src="https://via.placeholder.com/300">
@@ -394,6 +418,13 @@
         </ul>
       </div>
     </div>
+  </div>
+
+</section>
+
+<section class="services" id="social">
+  <div class="service-section-note">
+    Social Services (Events & Media)
   </div>
 
   <!-- Event Bundle -->
@@ -460,6 +491,14 @@
       </div>
     </div>
   </div>
+
+</section>
+
+<div class="service-section-note">
+Technology Services
+</div>
+
+<section class="services" id="tech">
 
   <!-- 3D Printing -->
   <div class="card">
