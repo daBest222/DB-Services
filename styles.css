@@ -16,7 +16,7 @@ header {
   animation: fadeDown 1s ease;
 }
 
-header p {
+header p, header p a {
   color: #aaa;
 }
 
@@ -218,3 +218,30 @@ iframe {
       color: #777;
       padding: 20px;
     }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .services {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .bundle-card {
+    grid-column: span 1;
+  }
+  
+  .card-content {
+    padding: 12px;
+  }
+  
+  .card h2,
+  .bundle-card h2 {
+    font-size: 1.1rem;
+  }
+  
+  .card p,
+  .bundle-card p {
+    font-size: 0.85rem;
+  }
+}
