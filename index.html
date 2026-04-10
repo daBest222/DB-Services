@@ -15,7 +15,7 @@
 <header>
   <img src="logo.png" alt="DB Services Logo" width="300">
   <p>Fast, reliable, affordable services</p>
-  <p><a href="#exterior">Exterior Services</a> | <a href="#care">Care Services</a> | <a href="#social">Social Services</a> | <a href="#tech">Tech Services</a> | <a href="#area">Service Area</a> | <a href="#bookings">Bookings</a></p>
+  <p><a href="#exterior">Exterior Services</a> | <a href="#social">Social Services</a> | <a href="#tech">Tech Services</a> | <a href="#area">Service Area</a> | <a href="#bookings">Bookings</a></p>
 </header>
 
 <section class="note">
@@ -133,45 +133,6 @@ Exterior Services
 
 </section>
 
-<div class="service-section-note" id="care">
-Care Services (Pets & People)
-</div>
-
-<section class="services">
-
-  <!-- Dog Walking -->
-  <div class="card">
-    <img src="pictures/dog-walking.JPG">
-    <div class="card-content">
-      <h2>Dog Walking</h2>
-      <p>Exercise for your dog.</p>
-      <div class="price">Starting from $20</div>
-      <div class="upsell">+ $10 longer walk</div>
-      <div class="details">
-        <ul>
-          <li>Full dog walking</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- Baby Sitting -->
-  <div class="card">
-    <img src="">
-    <div class="card-content">
-      <h2>Baby Sitting</h2>
-      <p>Watchful care for your little one.</p>
-      <div class="price">$20/hour</div>
-      <div class="details">
-        <ul>
-          <li>Baby sitting</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-</section>
-
 <div class="service-section-note" id="social">
 Social Services (Events & Media)
 </div>
@@ -279,21 +240,41 @@ Technology Services
   <p style="color:#aaa; margin-bottom:15px;">Message me or use the form below to get started.</p>
 
   <div class="buttons">
-    <button onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSeu9Qafqr01FqqkN6S5n7tHKyv-bfnCDOZb0rR2uqzGQ59Oag/viewform?usp=header'">
-      Book via Form
-    </button>
-
     <button onclick="window.location.href='mailto:dbservicesakl@gmail.com'">
-      Email Me
+      Email us at dbservicesakl@gmail.com
     </button>
   </div>
 
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeu9Qafqr01FqqkN6S5n7tHKyv-bfnCDOZb0rR2uqzGQ59Oag/viewform?usp=header" height="700"></iframe>
+  <form id="bookingForm" method="post" onsubmit="OnBookingFormSubmit(event)">
+    <input type="text" id="name" placeholder="Your Name" onchange="OnNameChanged(this)" required>
+    <input type="email" id="email" placeholder="Your Email" onchange="OnEmailChanged(this)" required>
+
+    <select id="service" required>
+      <option value="" disabled selected>Select Service</option>
+    </select>
+
+    <textarea id="notes" placeholder="Additional Notes (optional)" rows="4"></textarea>
+
+    <input type="text" id="address" placeholder="Your Address" onchange="OnAddressChanged(this)" required>
+
+    <input type="datetime-local" id="date" required>
+
+    <input type="checkbox" id="subscribe">
+    <label for="subscribe">Get emails when new promotions and new services are available</label>
+
+    <!-- Honeypot (hidden) -->
+    <input type="text" id="website" style="display:none">
+
+    <button type="submit" class="button">Book</button>
+    <p id="formMessage"></p>
+  </form>
 </section>
 
 <footer>
   © 2026 DB Services
 </footer>
+
+<script src="script.js"></script>
 
 </body>
 </html>
