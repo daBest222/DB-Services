@@ -42,7 +42,7 @@ function OnAddressChanged(addressInput) {
 async function OnBookingFormSubmit(event) {
     event.preventDefault();
 
-    const form = event.target;
+    const form = document.getElementById("bookingForm");
     const nameInput = form.getElementById("name");
     const emailInput = form.getElementById("email");
     const serviceSelect = form.getElementById("service");
