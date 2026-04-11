@@ -145,6 +145,11 @@ header p, header p a {
   border: 1px solid rgba(255, 204, 0, 0.3);
 }
 
+.sub-heading {
+  color:#aaa; 
+  margin-bottom:15px;
+}
+
 .contact {
   max-width: 700px;
   margin: 40px auto;
@@ -211,7 +216,11 @@ button:hover {
 .button-empty {
   background: transparent;
   border: 0px solid transparent;
-  color: black;
+  color: white;
+}
+
+.button-empty:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 iframe {
@@ -315,10 +324,4 @@ label {
   font-size: 0.9rem;
   cursor: pointer;
   display: inline;
-}
-
-#formMessage {
-  font-size: 0.9rem;
-  margin-top: 10px;
-  display: none;
 }

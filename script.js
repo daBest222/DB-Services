@@ -46,29 +46,23 @@ async function SendData(data) {
             formData.append(key, data[key]);
         }
 
-        const res = await fetch("https://script.google.com/macros/s/AKfycbyXuOehIxNRJh-ZaOHAYxPVow0oDCnLGEUzd2pSgbrG746b53Dp2dPeSFDMxq7OeyMl/exec", {
+        await fetch("https://script.google.com/macros/s/AKfycbyXuOehIxNRJh-ZaOHAYxPVow0oDCnLGEUzd2pSgbrG746b53Dp2dPeSFDMxq7OeyMl/exec", {
             method: "POST",
+            mode: "no-cors",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
             body: formData
         });
 
-        const result = await res.json();
-
-        return result;
-
-    } catch (error) {
-        console.error("Error sending data:", error);
-
-        throw error;
+    } catch (err) {
+        console.error("Network error:", err);
+        throw err;
     }
-
 }
 
-function ClearForm() {
-    document.getElementById("bookingForm").reset();
-    document.getElementById("formMessage").textContent = "";
+function ClearForm(form) {
+    form.reset();
 }
 
 async function OnBookingFormSubmit(event, form) {
@@ -82,7 +76,6 @@ async function OnBookingFormSubmit(event, form) {
     const dateInput = document.getElementById("date");
     const subscribeCheckbox = document.getElementById("subscribe");
     const honeypotInput = document.getElementById("website");
-    const formMessage = document.getElementById("formMessage");
 
     const data = {
         name: nameInput.value.trim(),
@@ -98,23 +91,11 @@ async function OnBookingFormSubmit(event, form) {
     };
 
     try {
-        const result = await SendData(data);
-
-        if (result.status === "error") {
-            console.error(result.message);
-            formMessage.textContent = result.message;
-            formMessage.style.color = "red";
-
-        } else {
-            console.log("Success:", result);
-            formMessage.textContent = "Booking successful!";
-            formMessage.style.color = "green";
-            ClearForm();
-        }
+        await SendData(data);
 
     } catch (err) {
         console.error("Network error:", err);
-        alert("Failed to submit");
+        alert("Failed to submit booking. Please try again later.");
     }
 }
 
