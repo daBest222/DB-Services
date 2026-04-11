@@ -208,17 +208,23 @@ button:hover {
   background: #00cc77;
 }
 
+.button-empty {
+  background: transparent;
+  border: 0px solid transparent;
+  color: black;
+}
+
 iframe {
   width: 100%;
   border: none;
   border-radius: 10px;
 }
 
-    footer {
-      text-align: center;
-      color: #777;
-      padding: 20px;
-    }
+footer {
+  text-align: center;
+  color: #777;
+  padding: 20px;
+}
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {

@@ -41,12 +41,17 @@ function OnAddressChanged(addressInput) {
 
 async function SendData(data) {
     try {
+        const formData = new URLSearchParams();
+        for (const key in data) {
+            formData.append(key, data[key]);
+        }
+
         const res = await fetch("https://script.google.com/macros/s/AKfycbyXuOehIxNRJh-ZaOHAYxPVow0oDCnLGEUzd2pSgbrG746b53Dp2dPeSFDMxq7OeyMl/exec", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/x-www-form-urlencoded"
             },
-            body: JSON.stringify(data)
+            body: formData
         });
 
         const result = await res.json();
@@ -61,10 +66,13 @@ async function SendData(data) {
 
 }
 
+function ClearForm() {
+    document.getElementById("bookingForm").reset();
+    document.getElementById("formMessage").textContent = "";
+}
+
 async function OnBookingFormSubmit(event, form) {
     event.preventDefault();
-
-    console.log(form);
 
     const nameInput = document.getElementById("name");
     const emailInput = document.getElementById("email");
@@ -101,6 +109,7 @@ async function OnBookingFormSubmit(event, form) {
             console.log("Success:", result);
             formMessage.textContent = "Booking successful!";
             formMessage.style.color = "green";
+            ClearForm();
         }
 
     } catch (err) {
