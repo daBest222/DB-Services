@@ -245,7 +245,7 @@ Technology Services
     </button>
   </div>
 
-  <form id="bookingForm" method="post" onsubmit="OnBookingFormSubmit(event)">
+  <form id="bookingForm" method="post" onsubmit="OnBookingFormSubmit(event, this)">
     <input type="text" id="name" placeholder="Your Name" onchange="OnNameChanged(this)" required>
     <input type="email" id="email" placeholder="Your Email" onchange="OnEmailChanged(this)" required>
 

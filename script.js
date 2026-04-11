@@ -39,10 +39,9 @@ function OnAddressChanged(addressInput) {
     }
 }
 
-async function OnBookingFormSubmit(event) {
+async function OnBookingFormSubmit(event, form) {
     event.preventDefault();
 
-    const form = document.getElementById("bookingForm");
     const nameInput = form.getElementById("name");
     const emailInput = form.getElementById("email");
     const serviceSelect = form.getElementById("service");
@@ -61,7 +60,9 @@ async function OnBookingFormSubmit(event) {
         address: addressInput.value.trim(),
         date: dateInput.value,
         subscribe: subscribeCheckbox.checked,
-        honeypot: honeypotInput.value
+        honeypot: honeypotInput.value,
+        mode: "book",
+        key: Math.floor(Date.now() / 60000)
     };
 
     try {
