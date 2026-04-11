@@ -39,18 +39,42 @@ function OnAddressChanged(addressInput) {
     }
 }
 
+async function SendData(data) {
+    try {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbyXuOehIxNRJh-ZaOHAYxPVow0oDCnLGEUzd2pSgbrG746b53Dp2dPeSFDMxq7OeyMl/exec", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+
+        return result;
+
+    } catch (error) {
+        console.error("Error sending data:", error);
+
+        throw error;
+    }
+
+}
+
 async function OnBookingFormSubmit(event, form) {
     event.preventDefault();
 
-    const nameInput = form.getElementById("name");
-    const emailInput = form.getElementById("email");
-    const serviceSelect = form.getElementById("service");
-    const notesInput = form.getElementById("notes");
-    const addressInput = form.getElementById("address");
-    const dateInput = form.getElementById("date");
-    const subscribeCheckbox = form.getElementById("subscribe");
-    const honeypotInput = form.getElementById("website");
-    const formMessage = form.getElementById("formMessage");
+    console.log(form);
+
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const serviceSelect = document.getElementById("service");
+    const notesInput = document.getElementById("notes");
+    const addressInput = document.getElementById("address");
+    const dateInput = document.getElementById("date");
+    const subscribeCheckbox = document.getElementById("subscribe");
+    const honeypotInput = document.getElementById("website");
+    const formMessage = document.getElementById("formMessage");
 
     const data = {
         name: nameInput.value.trim(),
@@ -66,16 +90,7 @@ async function OnBookingFormSubmit(event, form) {
     };
 
     try {
-        const res = await fetch("https://script.google.com/macros/s/AKfycbyXuOehIxNRJh-ZaOHAYxPVow0oDCnLGEUzd2pSgbrG746b53Dp2dPeSFDMxq7OeyMl/exec", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
-
-        const result = await res.json();
-        const formMessage = form.getElementById("formMessage");
+        const result = await SendData(data);
 
         if (result.status === "error") {
             console.error(result.message);
