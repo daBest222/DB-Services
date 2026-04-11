@@ -65,6 +65,33 @@ function ClearForm(form) {
     form.reset();
 }
 
+async function OnManageEmailFormSubmit(event, form) {
+    event.preventDefault();
+
+    const emailInput = document.getElementById("manageEmail");
+
+    const data = {
+        email: emailInput.value.trim(),
+    };
+
+    if (document.getElementById("manageSubscription").value === "subscribe") {
+        data.mode = "add-email";
+
+    } else {
+        data.mode = "remove-email";
+    }
+
+    try {
+        await SendData(data);
+        ClearForm(form);
+        alert("Subscription updated successfully!");
+
+    } catch (err) {
+        console.error("Network error:", err);
+        alert("Failed to update subscription. Please try again later.");
+    }
+}
+
 async function OnBookingFormSubmit(event, form) {
     event.preventDefault();
 
@@ -92,6 +119,8 @@ async function OnBookingFormSubmit(event, form) {
 
     try {
         await SendData(data);
+        ClearForm(form);
+        alert("Booking submitted successfully!");
 
     } catch (err) {
         console.error("Network error:", err);
