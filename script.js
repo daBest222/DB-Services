@@ -49,7 +49,7 @@ async function SendData(data) {
 
         await fetch("https://script.google.com/macros/s/YOUR_ID/exec", {
             method: "POST",
-            "cors": "no-cors",
+            mode: "no-cors",
             body: formData
         });
         return true;
