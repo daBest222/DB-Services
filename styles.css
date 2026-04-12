@@ -35,6 +35,18 @@ div, section {
   justify-content: center;
 }
 
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  opacity: 0.6;
+  background: #f2f2f2;
+}
+
 header {
   text-align: center;
   padding: 40px 20px;

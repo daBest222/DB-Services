@@ -40,16 +40,32 @@ function OnAddressChanged(addressInput) {
 }
 
 async function SendData(data) {
-    const iframe = document.getElementById("apps-script-frontend");
+    try {
+        const formData = new URLSearchParams();
 
-    iframe.contentWindow.postMessage(data, "https://script.google.com");
+        for (const key in data) {
+            formData.append(key, data[key]);
+        }
+
+        await fetch("https://script.google.com/macros/s/YOUR_ID/exec", {
+            method: "POST",
+            body: formData
+        });
+        return true;
+
+    } catch (error) {
+        console.error("Error sending data:", error);
+
+        return false;
+    }
+
 }
 
 function ClearForm(form) {
     form.reset();
 }
 
-function OnManageEmailFormSubmit(event, form) {
+async function OnManageEmailFormSubmit(event, form) {
     event.preventDefault();
 
     const emailInput = document.getElementById("manageEmail");
@@ -65,8 +81,17 @@ function OnManageEmailFormSubmit(event, form) {
         data.type = "remove-email";
     }
 
-    SendData(data);
     form.disabled = true;
+
+    if (await SendData(data)) {
+        alert("Request successful! We will process it soon.");
+        ClearForm(form);
+        form.disabled = false;
+    
+    } else {
+        alert("An error occurred while sending your request. Please try again later.");
+        form.disabled = false;
+    }
 }
 
 async function OnBookingFormSubmit(event, form) {
@@ -93,9 +118,18 @@ async function OnBookingFormSubmit(event, form) {
         type: "book",
         key: Math.floor(Date.now() / 60000)
     };
-    
-    SendData(data);
+
     form.disabled = true;
+
+    if (await SendData(data)) {
+        alert("Request successful! We will process it soon.");
+        ClearForm(form);
+        form.disabled = false;
+    
+    } else {
+        alert("An error occurred while sending your request. Please try again later.");
+        form.disabled = false;
+    }
 }
 
 function ProcessServerResponse(event) {
