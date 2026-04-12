@@ -40,32 +40,16 @@ function OnAddressChanged(addressInput) {
 }
 
 async function SendData(data) {
-    try {
-        const formData = new URLSearchParams();
-        for (const key in data) {
-            formData.append(key, data[key]);
-        }
+    const iframe = document.getElementById("apps-script-frontend");
 
-        await fetch("https://script.google.com/macros/s/AKfycbyXuOehIxNRJh-ZaOHAYxPVow0oDCnLGEUzd2pSgbrG746b53Dp2dPeSFDMxq7OeyMl/exec", {
-            method: "POST",
-            mode: "no-cors",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: formData
-        });
-
-    } catch (err) {
-        console.error("Network error:", err);
-        throw err;
-    }
+    iframe.contentWindow.postMessage(data, "https://script.google.com");
 }
 
 function ClearForm(form) {
     form.reset();
 }
 
-async function OnManageEmailFormSubmit(event, form) {
+function OnManageEmailFormSubmit(event, form) {
     event.preventDefault();
 
     const emailInput = document.getElementById("manageEmail");
@@ -73,23 +57,16 @@ async function OnManageEmailFormSubmit(event, form) {
     const data = {
         email: emailInput.value.trim(),
     };
-
+    
     if (document.getElementById("manageSubscription").value === "subscribe") {
-        data.mode = "add-email";
+        data.type = "add-email";
 
     } else {
-        data.mode = "remove-email";
+        data.type = "remove-email";
     }
 
-    try {
-        await SendData(data);
-        ClearForm(form);
-        alert("Subscription updated successfully!");
-
-    } catch (err) {
-        console.error("Network error:", err);
-        alert("Failed to update subscription. Please try again later.");
-    }
+    SendData(data);
+    form.disabled = true;
 }
 
 async function OnBookingFormSubmit(event, form) {
@@ -113,18 +90,34 @@ async function OnBookingFormSubmit(event, form) {
         date: dateInput.value,
         subscribe: subscribeCheckbox.checked,
         honeypot: honeypotInput.value,
-        mode: "book",
+        type: "book",
         key: Math.floor(Date.now() / 60000)
     };
+    
+    SendData(data);
+    form.disabled = true;
+}
 
-    try {
-        await SendData(data);
-        ClearForm(form);
-        alert("Booking submitted successfully!");
+function ProcessServerResponse(event) {
+    const data = event.data;
 
-    } catch (err) {
-        console.error("Network error:", err);
-        alert("Failed to submit booking. Please try again later.");
+    if (event.origin !== "https://dabest2222.github.io") return;
+
+    if (data.status === "success") {
+        if (data.type === "book") {
+            alert("Booking successful! We will contact you soon.");
+            document.getElementById("bookingForm").reset();
+
+        } else if (data.type === "add-email") {
+            alert("Subscription successful! You will now receive promotions.");
+            document.getElementById("manageEmailForm").reset();
+
+        } else if (data.type === "remove-email") {
+            alert("Unsubscription successful! You will no longer receive promotions.");
+            document.getElementById("manageEmailForm").reset();
+        }
+    } else {
+        alert("An error occurred: " + data.message);
     }
 }
 
@@ -155,3 +148,5 @@ function initServiceCardClicks() {
 
 // Initialize when page loads
 document.addEventListener("DOMContentLoaded", initServiceCardClicks);
+
+window.addEventListener("message", ProcessServerResponse);

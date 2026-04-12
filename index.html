@@ -245,7 +245,7 @@ Technology Services
     </button>
   </div>
 
-  <form id="bookingForm" method="post" onsubmit="OnBookingFormSubmit(event, this)">
+  <form id="bookingForm" onsubmit="OnBookingFormSubmit(event, this)">
     <input type="text" id="name" placeholder="Your Name" onchange="OnNameChanged(this)" required>
     <input type="email" id="email" placeholder="Your Email" onchange="OnEmailChanged(this)" required>
 
@@ -273,8 +273,8 @@ Technology Services
 <section class="contact" id="subscriptions">
   <h2>Add/Remove Email</h2>
   <p class="sub-heading">Manage your email subscriptions here.</p>
-  <form id="manageEmailForm" method="post" onsubmit="OnManageEmailFormSubmit(event, this)">
-    <input type="email" id="manageEmail" placeholder="Your Email" onchange="OnManageEmailChanged(this)" required>
+  <form id="manageEmailForm" onsubmit="OnManageEmailFormSubmit(event, this)">
+    <input type="email" id="manageEmail" placeholder="Your Email" onchange="OnEmailChanged(this)" required>
 
     <select id="manageSubscription" required>
       <option value="" disabled selected>Select Action</option>
@@ -290,6 +290,8 @@ Technology Services
 <footer>
   © 2026 DB Services
 </footer>
+
+<iframe id="apps-script-frontend" style="display: none;" src="https://script.google.com/macros/s/AKfycbyXuOehIxNRJh-ZaOHAYxPVow0oDCnLGEUzd2pSgbrG746b53Dp2dPeSFDMxq7OeyMl/exec"></iframe>
 
 <script src="script.js"></script>
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <script>
+        window.addEventListener("message", async (event) => {
+            const data = event.data;
+
+            
+            try {
+                const data = new URLSearchParams(data);
+
+                const res = await fetch("https://script.google.com/macros/s/AKfycbyXuOehIxNRJh-ZaOHAYxPVow0oDCnLGEUzd2pSgbrG746b53Dp2dPeSFDMxq7OeyMl/exec", {
+                    method: "POST",
+                    body: data
+                });
+
+                const json = await res.json();
+
+                // send success back
+                event.source.postMessage({
+                    type: data.type,
+                    status: json.status,
+                    message: json.message
+                }, event.origin);
+
+            } catch (err) {
+                event.source.postMessage({
+                    type: data.type,
+                    status: "Network error",
+                    error: err.message
+                }, event.origin);
+            }
+        });
+    </script>
+</html>
