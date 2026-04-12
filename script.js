@@ -150,3 +150,20 @@ function initServiceCardClicks() {
 document.addEventListener("DOMContentLoaded", initServiceCardClicks);
 
 window.addEventListener("message", ProcessServerResponse);
+
+const btn = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}

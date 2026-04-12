@@ -4,10 +4,35 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(135deg, #0a1a37, #3669c0);
   color: white;
+}
+
+div, section {
+  scroll-margin-top: 80px;
+}
+
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 14px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  background: black;
+  color: white;
+  display: none;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 header {
