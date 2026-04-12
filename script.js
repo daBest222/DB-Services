@@ -47,7 +47,7 @@ async function SendData(data) {
             formData.append(key, data[key]);
         }
 
-        await fetch("https://script.google.com/macros/s/YOUR_ID/exec", {
+        await fetch("https://script.google.com/macros/s/AKfycbza49C6EkbPRQRRnO-wfPo7T1XnUV9f7oW2f2pXN-6Tw1ch8lZJByaiK1Xdq5bONpDszw/exec", {
             method: "POST",
             mode: "no-cors",
             body: formData
