@@ -125,7 +125,7 @@ function ProcessServerResponse(event) {
     }
 }
 
-function initServiceCardClicks() {
+function InitWindow() {
     const cards = document.querySelectorAll(".card, .bundle-card");
     const serviceSelect = document.getElementById("service");
     
@@ -148,22 +148,28 @@ function initServiceCardClicks() {
             serviceSelect.value = serviceName;
         });
     });
+
+    const btn = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    });
+
+    const iframe = document.getElementById("apps-script-frontend");
+    GetConfig().then(config => {
+        iframe.src = config.apiUrl;
+    });
 }
 
-// Initialize when page loads
-document.addEventListener("DOMContentLoaded", initServiceCardClicks);
-
-window.addEventListener("message", ProcessServerResponse);
-
-const btn = document.getElementById("backToTop");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    btn.style.display = "block";
-  } else {
-    btn.style.display = "none";
-  }
-});
+async function GetConfig() {
+  const response = await fetch("config.json");
+  const config = await response.json();
+  return config;
+}
 
 function scrollToTop() {
   window.scrollTo({
@@ -171,3 +177,8 @@ function scrollToTop() {
     behavior: "smooth"
   });
 }
+
+// Initialize when page loads
+document.addEventListener("DOMContentLoaded", InitWindow);
+
+window.addEventListener("message", ProcessServerResponse);
