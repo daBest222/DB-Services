@@ -40,6 +40,8 @@ function OnAddressChanged(addressInput) {
 }
 
 async function SendData(data) {
+    data.key = Math.floor(Date.now() / 60000) // Time based key
+
     const iframe = document.getElementById("apps-script-frontend");
 
     iframe.contentWindow.postMessage(data, "*");
@@ -91,7 +93,6 @@ async function OnBookingFormSubmit(event, form) {
         subscribe: subscribeCheckbox.checked,
         honeypot: honeypotInput.value,
         type: "book",
-        key: Math.floor(Date.now() / 60000)
     };
     
     SendData(data);
