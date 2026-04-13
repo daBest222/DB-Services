@@ -245,46 +245,14 @@ Technology Services
     </button>
   </div>
 
-  <form id="bookingForm" onsubmit="OnBookingFormSubmit(event, this)">
-    <input type="text" id="name" placeholder="Your Name" onchange="OnNameChanged(this)" required>
-    <input type="email" id="email" placeholder="Your Email" onchange="OnEmailChanged(this)" required>
-
-    <select id="service" required>
-      <option value="" disabled selected>Select Service</option>
-    </select>
-
-    <textarea id="notes" placeholder="Additional Notes (optional)" rows="4"></textarea>
-
-    <input type="text" id="address" placeholder="Your Address" onchange="OnAddressChanged(this)" required>
-
-    <input type="datetime-local" id="date" required>
-
-    <input type="checkbox" id="subscribe">
-    <label for="subscribe">Get emails when new promotions and new services are available</label>
-
-    <!-- Honeypot (hidden) -->
-    <input type="text" id="website" style="display:none">
-
-    <button type="submit" class="button">Book</button>
-    <button type="button" class="button button-empty" onclick="ClearForm(this.form)">✕ Clear Form</button>
-  </form>
+  <iframe id="bookingIframe"></iframe>
 </section>
 
 <section class="contact" id="subscriptions">
   <h2>Add/Remove Email</h2>
   <p class="sub-heading">Manage your email subscriptions here.</p>
-  <form id="manageEmailForm" onsubmit="OnManageEmailFormSubmit(event, this)">
-    <input type="email" id="manageEmail" placeholder="Your Email" onchange="OnEmailChanged(this)" required>
-
-    <select id="manageSubscription" required>
-      <option value="" disabled selected>Select Action</option>
-      <option value="subscribe">Subscribe to Promotions</option>
-      <option value="unsubscribe">Unsubscribe from Promotions</option>
-    </select>
-
-    <button type="submit" class="button">Update Subscription</button>
-    <button type="button" class="button button-empty" onclick="ClearForm(this.form)">✕ Clear Form</button>
-  </form>
+  
+  <iframe id="manageEmailIframe"></iframe>
 </section>
 
 <footer>

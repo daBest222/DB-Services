@@ -342,7 +342,7 @@ form input, form select, form textarea {
 }
 
 /* Checkbox styling */
-input[type="checkbox"] {
+form input[type="checkbox"] {
   width: 15px;
   height: 15px;
   margin-right: 8px;
@@ -350,15 +350,19 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-input[type="checkbox"]:checked {
+form input[type="checkbox"]:checked {
   background-color: #00ff99;
   border-color: #00ff99;
 }
 
 /* Checkbox label styling */
-label {
+form label {
   color: #bbb;
   font-size: 0.9rem;
   cursor: pointer;
   display: inline;
+}
+
+form {
+  width: 100%;
 }

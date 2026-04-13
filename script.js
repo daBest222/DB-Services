@@ -1,132 +1,4 @@
-function OnNameChanged(nameInput) {
-    if (nameInput.value.trim() === "" || nameInput.value.trim().length <= 2) {
-        nameInput.style.borderColor = "red";
-
-        return true;
-
-    } else {
-        nameInput.style.borderColor = "green";
-
-        return false
-    }
-}
-
-function OnEmailChanged(emailInput) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(emailInput.value.trim())) {
-        emailInput.style.borderColor = "red";
-
-        return true;
-
-    } else {
-        emailInput.style.borderColor = "green"; 
-
-        return false
-    }
-}
-
-function OnAddressChanged(addressInput) {
-    if (addressInput.value.trim() === "" || addressInput.value.trim().length <= 5) {
-        addressInput.style.borderColor = "red";
-
-        return true;
-
-    } else {
-        addressInput.style.borderColor = "green";
-
-        return false
-    }
-}
-
-async function SendData(data) {
-    data.key = Math.floor(Date.now() / 60000) // Time based key
-
-    const iframe = document.getElementById("apps-script-frontend");
-
-    iframe.contentWindow.postMessage(data, "*");
-}
-
-function ClearForm(form) {
-    form.reset();
-}
-
-function OnManageEmailFormSubmit(event, form) {
-    event.preventDefault();
-
-    const emailInput = document.getElementById("manageEmail");
-
-    const data = {
-        email: emailInput.value.trim(),
-    };
-    
-    if (document.getElementById("manageSubscription").value === "subscribe") {
-        data.type = "add-email";
-
-    } else {
-        data.type = "remove-email";
-    }
-
-    SendData(data);
-    form.disabled = true;
-}
-
-async function OnBookingFormSubmit(event, form) {
-    event.preventDefault();
-
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const serviceSelect = document.getElementById("service");
-    const notesInput = document.getElementById("notes");
-    const addressInput = document.getElementById("address");
-    const dateInput = document.getElementById("date");
-    const subscribeCheckbox = document.getElementById("subscribe");
-    const honeypotInput = document.getElementById("website");
-
-    const data = {
-        name: nameInput.value.trim(),
-        email: emailInput.value.trim(),
-        service: serviceSelect.value,
-        notes: notesInput.value.trim(),
-        address: addressInput.value.trim(),
-        date: dateInput.value,
-        subscribe: subscribeCheckbox.checked,
-        honeypot: honeypotInput.value,
-        type: "book",
-    };
-    
-    SendData(data);
-    form.disabled = true;
-}
-
-function ProcessServerResponse(event) {
-    const data = event.data;
-
-    if (data.status === "success") {
-        if (data.type === "book") {
-            alert("Booking successful! We will contact you soon.");
-            const bookingForm = document.getElementById("bookingForm");
-            bookingForm.reset();
-            bookingForm.disabled = false;
-
-        } else if (data.type === "add-email") {
-            alert("Subscription successful! You will now receive promotions.");
-            const manageEmailForm = document.getElementById("manageEmailForm");
-            manageEmailForm.reset();
-            manageEmailForm.disabled = false;
-
-        } else if (data.type === "remove-email") {
-            alert("Unsubscription successful! You will no longer receive promotions.");
-            const manageEmailForm = document.getElementById("manageEmailForm");
-            manageEmailForm.reset();
-            manageEmailForm.disabled = false;
-        }
-    } else {
-        alert("An error occurred: " + data.message);
-    }
-}
-
-function InitWindow() {
+async function InitWindow() {
     const cards = document.querySelectorAll(".card, .bundle-card");
     const serviceSelect = document.getElementById("service");
     
@@ -160,10 +32,9 @@ function InitWindow() {
         }
     });
 
-    const iframe = document.getElementById("apps-script-frontend");
-    GetConfig().then(config => {
-        iframe.src = config.apiUrl;
-    });
+    const config = await GetConfig();
+    document.getElementById("bookingIframe").src = config.apiUrl + "?form=booking";
+    document.getElementById("manageEmailIframe").src = config.apiUrl + "?form=subscription";
 }
 
 async function GetConfig() {
@@ -180,6 +51,4 @@ function scrollToTop() {
 }
 
 // Initialize when page loads
-document.addEventListener("DOMContentLoaded", InitWindow);
-
-window.addEventListener("message", ProcessServerResponse);
+document.addEventListener("DOMContentLoaded", InitWindow());
