@@ -43,3 +43,16 @@ function scrollToTop() {
 
 // Initialize when page loads
 document.addEventListener("DOMContentLoaded", InitWindow());
+
+window.addEventListener("message", (event) => {
+  if (event.data.type === "resizeIframe") {
+    if (event.data.iframe === "booking") {
+        const iframe = document.getElementById("bookingIframe");
+
+    } else if (event.data.iframe === "manageEmailIframe") {
+        const iframe = document.getElementById("manageEmailIframe");
+    }
+
+    iframe.style.height = event.data.height + "px";
+  }
+});
