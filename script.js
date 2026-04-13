@@ -1,14 +1,8 @@
 async function InitWindow() {
     const cards = document.querySelectorAll(".card, .bundle-card");
-    const serviceSelect = document.getElementById("service");
     
     // Add options for each service card
     cards.forEach(card => {
-        const serviceName = card.querySelector("h2").textContent;
-        const option = document.createElement("option");
-        option.value = serviceName;
-        option.textContent = serviceName;
-        serviceSelect.appendChild(option);
         
         // Add click event listener
         card.addEventListener("click", function() {
@@ -16,9 +10,6 @@ async function InitWindow() {
             
             // Scroll to booking section
             bookingSection.scrollIntoView({ behavior: "smooth" });
-            
-            // Select the service
-            serviceSelect.value = serviceName;
         });
     });
 
