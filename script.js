@@ -42,7 +42,7 @@ function OnAddressChanged(addressInput) {
 async function SendData(data) {
     const iframe = document.getElementById("apps-script-frontend");
 
-    iframe.contentWindow.postMessage(data, "https://script.google.com");
+    iframe.contentWindow.postMessage(data, "*");
 }
 
 function ClearForm(form) {
@@ -100,8 +100,6 @@ async function OnBookingFormSubmit(event, form) {
 
 function ProcessServerResponse(event) {
     const data = event.data;
-
-    if (event.origin !== "https://dabest2222.github.io") return;
 
     if (data.status === "success") {
         if (data.type === "book") {
