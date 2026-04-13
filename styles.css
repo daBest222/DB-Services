@@ -345,7 +345,7 @@ form input, form select, form textarea {
 form input[type="checkbox"] {
   width: 15px;
   height: 15px;
-  margin-right: 8px;
+  margin-left: 20%;
   accent-color: #00ff99;
   cursor: pointer;
 }
