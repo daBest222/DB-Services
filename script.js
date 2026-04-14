@@ -49,7 +49,7 @@ window.addEventListener("message", (event) => {
     if (event.data.iframe === "booking") {
         const iframe = document.getElementById("bookingIframe");
 
-    } else if (event.data.iframe === "manageEmailIframe") {
+    } else if (event.data.iframe === "subscription") {
         const iframe = document.getElementById("manageEmailIframe");
     }
 
