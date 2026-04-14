@@ -1,10 +1,99 @@
 [
-  {
-    "name": "Lawn Mowing",
-    "description": "Description for Service 1"
+  {"section": "exterior", "name": "Exterior Services", "services":
+    [
+      {
+    "name": "Car Washing",
+    "sub-heading": "Make your car shine as new.",
+    "notice": null,
+    "price": "Starting from $25",
+    "upsells": [
+        {
+            "description": "+ $10 interior clean (vacuum & dusting)* ",
+            "note": "* Customer provides vacuum"
+        }
+    ],
+    "details": [
+        "Exterior hand wash",
+        "Wheel cleaning",
+        "Optional interior vacuum + dusting"
+    ],
+    "image": "car-washing.JPG",
+    "bundle": false
   },
   {
-    "name": "Service 2",
-    "description": "Description for Service 2"
+    "name": "Lawn Mowing + Weeding Bundle",
+    "sub-heading": "Make your garden look neat and tidy.",
+    "notice": "You must provide a lawn mower.",
+    "price": "Starting from $40",
+    "upsells": [
+        {
+            "description": "+ $10 weed spray",
+            "note": null
+        }
+    ],
+    "details": [
+        "Lawn mowing",
+        "Weeding",
+        "Optional weed spray"
+    ],
+    "image": "lawn-mowing+weeding-bundle.png",
+    "bundle": true
+  },
+  {
+    "name": "Lawn Mowing",
+    "sub-heading": "Keep your lawn looking great.",
+    "notice": "You must provide a lawn mower.",
+    "price": "Starting from $20",
+    "upsells": null,
+    "details": [
+        "Lawn mowing"
+    ],
+    "image": "lawn-mowing.JPG",
+    "bundle": false
+  },
+  {
+    "name": "Weeding",
+    "sub-heading": "Remove unwanted plants from your garden.",
+    "notice": null,
+    "price": "Starting from $30",
+    "upsells": [
+        {
+            "description": "+ $10 weed spray",
+            "note": null
+        }
+    ],
+    "details": [
+        "Weeding",
+        "Optional weed spray"
+    ],
+    "image": "weeding.JPG",
+    "bundle": false
+  },
+  {
+    "name": "Leaf Clearing",
+    "sub-heading": "Remove fallen leaves.",
+    "notice": "You must provide blower or rake or other tools required.",
+    "price": "Starting from $25",
+    "upsells": null,
+    "details": [
+        "Leaf clearing"
+    ],
+    "image": "leaf-clearing.JPG",
+    "bundle": false
+  },
+  {
+    "name": "Window Cleaning",
+    "sub-heading": "Make your windows sparkle.",
+    "notice": "You must provide ladder if needed.",
+    "price": "Starting from $40",
+    "upsells": null,
+    "details": [
+        "Exterior window washing"
+    ],
+    "image": "window-washing.JPG",
+    "bundle": false
   }
+    ]
+}
+  
 ]
