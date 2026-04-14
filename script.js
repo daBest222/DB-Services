@@ -46,12 +46,13 @@ document.addEventListener("DOMContentLoaded", InitWindow());
 
 window.addEventListener("message", (event) => {
   if (event.data.type === "resizeIframe") {
+    iframe = null;
     if (event.data.iframe === "booking") {
-        const iframe = document.getElementById("bookingIframe");
+        iframe = document.getElementById("bookingIframe");
         alert("Resizing booking iframe to " + event.data.height + "px");
 
     } else if (event.data.iframe === "subscription") {
-        const iframe = document.getElementById("manageEmailIframe");
+        iframe = document.getElementById("manageEmailIframe");
         alert("Resizing subscription iframe to " + event.data.height + "px");
     }
 
