@@ -341,26 +341,23 @@ form input, form select, form textarea {
   margin-bottom: 10px;
 }
 
-/* Checkbox styling */
-form input[type="checkbox"] {
-  width: 15px;
-  height: 15px;
-  margin-left: 20%;
-  accent-color: #00ff99;
-  cursor: pointer;
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: left;
 }
 
-form input[type="checkbox"]:checked {
-  background-color: #00ff99;
-  border-color: #00ff99;
+.checkbox-group input {
+  flex-shrink: 0;
 }
 
-/* Checkbox label styling */
-form label {
-  color: #bbb;
-  font-size: 0.9rem;
-  cursor: pointer;
-  display: inline;
+.checkbox-group label {
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 
 form {
