@@ -363,3 +363,9 @@ form input, form select, form textarea {
 form {
   width: 100%;
 }
+
+form p {
+  color: #bbb;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
