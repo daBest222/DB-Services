@@ -49,11 +49,9 @@ window.addEventListener("message", (event) => {
     iframe = null;
     if (event.data.iframe === "booking") {
         iframe = document.getElementById("bookingIframe");
-        alert("Resizing booking iframe to " + event.data.height + "px");
 
     } else if (event.data.iframe === "subscription") {
         iframe = document.getElementById("manageEmailIframe");
-        alert("Resizing subscription iframe to " + event.data.height + "px");
     }
 
     iframe.style.height = event.data.height + "px";
