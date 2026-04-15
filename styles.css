@@ -345,7 +345,6 @@ form input, form select, form textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 400px;
   margin: 0 auto;
   text-align: left;
 }
@@ -361,12 +360,4 @@ form input, form select, form textarea {
 
 form {
   width: 100%;
-}
-
-form p {
-  color: #bbb;
-  font-size: 24pt;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  text-align: center;
 }
