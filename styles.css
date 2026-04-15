@@ -345,6 +345,7 @@ form input, form select, form textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 400px;
   margin: 0 auto;
   text-align: left;
 }
