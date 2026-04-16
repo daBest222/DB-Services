@@ -351,6 +351,7 @@ form input, form select, form textarea {
 }
 
 .checkbox-group input {
+  flex-shrink: 1;
 }
 
 .checkbox-group label {
@@ -360,4 +361,13 @@ form input, form select, form textarea {
 
 form {
   width: 100%;
+}
+
+.box {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #111;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
 }
